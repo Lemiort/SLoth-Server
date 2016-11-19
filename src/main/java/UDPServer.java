@@ -14,6 +14,9 @@ public class UDPServer {
         byte[] receiveData = new byte[1024];
         byte[] sendData = new byte[1024];
 
+        float f = 0;
+        float df = 0.5F;
+
         JSONParser parser = new JSONParser();
         Transform transform = new Transform();
 
@@ -65,7 +68,8 @@ public class UDPServer {
             position.y = y.floatValue();
             position.z = z.floatValue();
 
-            position.y = (float)Math.cos(LocalTime.now().getSecond());
+            position.y = (float)Math.cos(f);
+            f += df;
             transform.position = position;
 
             //сериализация
@@ -88,6 +92,7 @@ public class UDPServer {
             DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
             serverSocket.send(sendPacket);
             System.out.println("SENT: " + transformToSend.toJSONString());
+
         }
     }
 }
