@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14b550d2-4d26-4189-af48-4280d4232080" name="Default" comment="" />
+    <list default="true" id="14b550d2-4d26-4189-af48-4280d4232080" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/common.vsd" afterPath="$PROJECT_DIR$/docs/common.vsd" />
+    </list>
     <ignored path="test_serv.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -278,7 +280,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -748,12 +750,12 @@
       <workItem from="1478293266469" duration="3587000" />
       <workItem from="1479161438683" duration="1914000" />
       <workItem from="1479570100284" duration="1526000" />
-      <workItem from="1479571845890" duration="83000" />
+      <workItem from="1479571845890" duration="1248000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17263000" />
+    <option name="totallyTimeSpent" value="18428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
