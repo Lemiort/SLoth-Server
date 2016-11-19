@@ -1,3 +1,5 @@
+package ru.etu.sapr;
+
 /**
  * Created by Red on 16.10.2016.
  */
