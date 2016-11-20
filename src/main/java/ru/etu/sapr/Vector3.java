@@ -12,9 +12,9 @@ public class Vector3 implements IJsonParsable {
     public float z;
 
     public void Parse(JSONObject obj) {
-        Float x = (Float)obj.get("x");
-        Float y = (Float)obj.get("y");
-        Float z = (Float)obj.get("z");
+        Double x = (Double)obj.get("x");
+        Double y = (Double)obj.get("y");
+        Double z = (Double)obj.get("z");
 
         this.x = x.floatValue();
         this.y = y.floatValue();

@@ -1,13 +1,14 @@
 package ru.etu.sapr;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  * Created by Nikita on 20.11.2016.
  */
 public class TestClass {
     public static void main(String[] args) throws Exception {
-        Vector3 v3 = new Vector3();
+        /*Vector3 v3 = new Vector3();
         v3.x = 1;
         v3.y = 2;
         v3.z = 3;
@@ -25,6 +26,20 @@ public class TestClass {
         System.out.println("JSONObject Transform: " + jT1.toString());
         Transform t2 = new Transform();
         t2.Parse(jT1);
-        System.out.println("Parsed Transform: " + t2.toString() + ": " + t2.position.toString());
+        System.out.println("Parsed Transform: " + t2.toString() + ": " + t2.position.toString());*/
+
+
+        SimpleCube simpleCube = new SimpleCube();
+
+        JSONParser jsonParser = new JSONParser();
+        String str = new String("{\"transformation\":{\"position\":{\"x\":0.0,\"y\":0.0,\"z\":0.0}}}");
+        str = simpleCube.toJSONObject().toJSONString().toString();
+        System.out.println(simpleCube.toJSONObject().toJSONString());
+
+        Object object = jsonParser.parse(str);
+
+        JSONObject jsonObject = (JSONObject) object;
+        simpleCube.Parse(jsonObject);
+        System.out.println(simpleCube.toJSONObject().toJSONString());
     }
 }

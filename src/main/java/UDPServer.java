@@ -5,10 +5,15 @@ public class UDPServer {
 
     public static void main(String[] args) throws Exception {
 
-        Thread netServerThread = new Thread(new NetServer());
+        Game game = new Game();
+        NetServer netServer = new NetServer(game);
+
+        Thread gameThread = new Thread(game);
+        gameThread.start();
+
+        Thread netServerThread = new Thread(netServer);
         netServerThread.start();
 
-        Thread gameThread = new Thread(new Game());
-        gameThread.start();
+
     }
 }

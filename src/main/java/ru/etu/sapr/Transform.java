@@ -8,6 +8,11 @@ import org.json.simple.JSONObject;
 public class Transform implements IJsonParsable {
     public Vector3 position;
 
+    public Transform(){
+
+        position = new Vector3();
+    }
+
     public void Parse(JSONObject obj) {
         JSONObject jsonPosition = (JSONObject)obj.get("position");
 
