@@ -11,6 +11,7 @@ public class Transform implements IJsonParsable {
     public void Parse(JSONObject obj) {
         JSONObject jsonPosition = (JSONObject)obj.get("position");
 
+        this.position = new Vector3();
         this.position.Parse(jsonPosition);
     }
 
