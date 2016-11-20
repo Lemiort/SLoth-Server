@@ -17,6 +17,6 @@ public class Transform implements IJsonParsable {
     public JSONObject toJSONObject() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("position", this.position.toJSONObject());
-        return null;
+        return jsonObject;
     }
 }
