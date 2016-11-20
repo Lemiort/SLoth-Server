@@ -9,10 +9,11 @@ import ru.etu.sapr.*;
 public class UDPServer {
 
     public static void main(String[] args) throws Exception {
+        UdpClient udpClient = new UdpClient(9876);
+
         // Initialization
-        DatagramSocket serverSocket = new DatagramSocket(9876);
-        byte[] receiveData = new byte[1024];
-        byte[] sendData = new byte[1024];
+        byte[] receiveData;
+        byte[] sendData;
 
         float f = 0;
         float df = 0.5F;
@@ -50,10 +51,8 @@ public class UDPServer {
 
         // Main loop
         while (true){
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
-            serverSocket.receive(receivePacket);
-            String sentence = new String( receivePacket.getData());
-            sentence = new String(receivePacket.getData(),0, receivePacket.getLength());
+            receiveData = udpClient.Receive();
+            String sentence = new String(receiveData,0,receiveData.length);
             System.out.println("RECEIVED: " + sentence);
 
             //десереиализация
@@ -82,15 +81,8 @@ public class UDPServer {
 
             System.out.println("transform: " + transformToSend.toJSONString());
 
-            InetAddress IPAddress = receivePacket.getAddress();
-            int port = receivePacket.getPort();
-            //String capitalizedSentence = sentence.toUpperCase();
-            //sendData = capitalizedSentence.getBytes();
+            udpClient.Send(transformToSend.toJSONString().getBytes());
 
-            sendData = transformToSend.toJSONString().getBytes();
-
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
-            serverSocket.send(sendPacket);
             System.out.println("SENT: " + transformToSend.toJSONString());
 
         }

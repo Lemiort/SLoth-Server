@@ -1,15 +1,19 @@
 package ru.etu.sapr;
 
+import java.io.IOException;
+
 /**
  * Created by Nikita on 19.11.2016.
  */
 public interface INetClient {
-    // TODO: геттер клиента
+    IpEndPoint getClientEndPoint() throws  NullPointerException;
 
     //принять от текущего клиента или от ещё неизвестного
     //после принятия он запоминается
-    byte[] Receive();
+    byte[] Receive() throws IOException;
 
     //отправить на своего клиента
-    void Send();
+    void Send(byte[] data) throws IOException;
+
+    void Send(byte[] data, IpEndPoint ep) throws IOException;
 }
