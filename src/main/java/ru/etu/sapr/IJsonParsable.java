@@ -5,5 +5,5 @@ import org.json.simple.JSONObject;
  */
 public interface IJsonParsable {
     void Parse(JSONObject obj);
-    JSONObject toJSONOject();
+    JSONObject toJSONObject();
 }

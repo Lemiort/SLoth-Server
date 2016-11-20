@@ -22,7 +22,7 @@ public class Vector3 implements IJsonParsable {
         this.z = z.floatValue();
     }
 
-    public JSONObject toJSONOject() {
+    public JSONObject toJSONObject() {
         JSONObject position = new JSONObject();
         position.put("x", this.x);
         position.put("y", this.y);

@@ -7,5 +7,8 @@ public class UDPServer {
 
         Thread netServerThread = new Thread(new NetServer());
         netServerThread.start();
+
+        Thread gameThread = new Thread(new Game());
+        gameThread.start();
     }
 }
