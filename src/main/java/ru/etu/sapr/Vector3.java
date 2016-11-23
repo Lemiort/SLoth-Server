@@ -10,6 +10,11 @@ public class Vector3 implements IJsonParsable {
     public float x;
     public float y;
     public float z;
+    private JSONObject jsonObject;
+
+    public Vector3(){
+        jsonObject = new JSONObject();
+    }
 
     public void Parse(JSONObject obj) {
         Double x = (Double)obj.get("x");
@@ -22,7 +27,7 @@ public class Vector3 implements IJsonParsable {
     }
 
     public JSONObject toJSONObject() {
-        JSONObject jsonObject = new JSONObject();
+        jsonObject.clear();
         jsonObject.put("x", this.x);
         jsonObject.put("y", this.y);
         jsonObject.put("z", this.z);

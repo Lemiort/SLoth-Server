@@ -1,5 +1,8 @@
 package ru.etu.sapr;
 
+import ru.etu.sapr.INetClient;
+import ru.etu.sapr.IpEndPoint;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

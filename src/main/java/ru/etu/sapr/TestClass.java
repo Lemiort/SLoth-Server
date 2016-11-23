@@ -41,5 +41,32 @@ public class TestClass {
         JSONObject jsonObject = (JSONObject) object;
         simpleCube.Parse(jsonObject);
         System.out.println(simpleCube.toJSONObject().toJSONString());
+
+        JsonContainer message = new JsonContainer();
+        str ="{\"objectType\":\"setPosition\",\"objects\":[\"{\\\"transformation\\\":{\\\"position\\\":{\\\"x\\\":0.0,\\\"y\\\":0.0,\\\"z\\\":0.0}}}\"]}";
+        jsonObject = (JSONObject) jsonParser.parse( str);
+        message.Parse(jsonObject);
+        if(message.getObjectType().contains("setPosition"))
+        {
+            str = message.getObject(0);
+            System.out.println("returned "+str);
+            //String str2 = str.substring(1,str.length()-2);
+            //System.out.println("returned2 "+str2);
+            jsonObject = (JSONObject) jsonParser.parse(str);
+            simpleCube.Parse(jsonObject);
+            simpleCube.transformation.position.y = 0.0f;
+
+            // сериализация
+            //message = new JsonContainer();
+            message.clear();
+
+            message.addObject(simpleCube.toJSONObject(),0);
+
+            System.out.println("SENT: " + message.toJSONObject().toJSONString());
+        }
+        else
+        {
+            System.out.println("Type is : " + message.getObjectType());
+        }
     }
 }

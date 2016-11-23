@@ -12,7 +12,9 @@ import java.net.SocketException;
  */
 public class NetServer implements Runnable {
 
-    Game game;
+    private Game game;
+    private JsonContainer message = new JsonContainer();
+
 
     public  NetServer(Game game)
     {
@@ -50,7 +52,29 @@ public class NetServer implements Runnable {
                 //десереиализация
                 Object obj = parser.parse(sentence);
                 JSONObject jsonObject = (JSONObject) obj;
-                game.getSimpleCube().Parse(jsonObject);
+                message.Parse(jsonObject);
+                if(message.getObjectType().contains("setPosition"))
+                {
+                    jsonObject = (JSONObject) parser.parse( message.getObject(0));
+                    game.getSimpleCube().Parse(jsonObject);
+                    game.getSimpleCube().transformation.position.y = (float) Math.cos(f);
+                    f += df;
+
+                    // сериализация
+                    //message = new JsonContainer();
+                    message.clear();
+
+                    message.addObject(game.getSimpleCube().toJSONObject(),0);
+
+                    udpClient.Send(message.toJSONObject().toJSONString().getBytes());
+
+                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                }
+                else
+                {
+                    System.out.println("Type is : " + message.getObjectType());
+                }
+               /* game.getSimpleCube().Parse(jsonObject);
 
                 game.getSimpleCube().transformation.position.y = (float) Math.cos(f);
                 f += df;
@@ -58,7 +82,7 @@ public class NetServer implements Runnable {
                 //сериализация
                 udpClient.Send(game.getSimpleCube().toJSONObject().toJSONString().getBytes());
 
-                System.out.println("SENT: " + game.getSimpleCube().toJSONObject().toJSONString());
+                System.out.println("SENT: " + game.getSimpleCube().toJSONObject().toJSONString());*/
 
             }
         }
