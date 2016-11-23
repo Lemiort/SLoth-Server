@@ -7,21 +7,20 @@ import org.json.simple.JSONObject;
  */
 public class Transform implements IJsonParsable {
     public Vector3 position;
-
+    private JSONObject jsonObject;
     public Transform(){
-
+        jsonObject = new JSONObject();
         position = new Vector3();
     }
 
     public void Parse(JSONObject obj) {
-        JSONObject jsonPosition = (JSONObject)obj.get("position");
 
-        this.position = new Vector3();
+        JSONObject jsonPosition = (JSONObject)obj.get("position");
         this.position.Parse(jsonPosition);
     }
 
     public JSONObject toJSONObject() {
-        JSONObject jsonObject = new JSONObject();
+        jsonObject.clear();
         jsonObject.put("position", this.position.toJSONObject());
         return jsonObject;
     }
