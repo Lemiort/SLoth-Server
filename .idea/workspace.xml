@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b550d2-4d26-4189-af48-4280d4232080" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/TransactionBuilder.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/TransactionFactory.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CreateTransaction.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CreateTransaction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DeleteTransaction.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DeleteTransaction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/MoveTransaction.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/MoveTransaction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/Transaction.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/Transaction.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/~$$common.~vsd" afterPath="" />
     </list>
     <ignored path="test_serv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +39,7 @@
           <file leaf-file-name="TransactionBuilder.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/TransactionBuilder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="353">
+                <state relative-caret-position="527">
                   <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                   <folding />
                 </state>
@@ -69,8 +63,8 @@
           <file leaf-file-name="JsonContainer.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/net/JsonContainer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-18">
-                  <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="30" />
+                <state relative-caret-position="84">
+                  <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#675#676#0" expanded="true" />
@@ -868,12 +862,12 @@
       <workItem from="1479753807756" duration="10308000" />
       <workItem from="1480167998907" duration="6239000" />
       <workItem from="1480188360281" duration="3669000" />
-      <workItem from="1480192506922" duration="4075000" />
+      <workItem from="1480192506922" duration="4984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54070000" />
+    <option name="totallyTimeSpent" value="54979000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -886,7 +880,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1270,12 +1264,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#356#357#0" expanded="true" />
-            <element signature="e#400#401#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1393,23 +1382,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/TransactionBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/net/JsonContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="84">
+          <caret line="17" column="16" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#675#676#0" expanded="true" />
             <element signature="e#729#730#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/TransactionBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
