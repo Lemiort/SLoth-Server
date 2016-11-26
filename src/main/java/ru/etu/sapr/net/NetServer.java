@@ -1,8 +1,9 @@
-package ru.etu.sapr;
+package ru.etu.sapr.net;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import ru.etu.sapr.game.GameServer;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -12,11 +13,11 @@ import java.net.SocketException;
  */
 public class NetServer implements Runnable {
 
-    private Game game;
+    private GameServer game;
     private JsonContainer message = new JsonContainer();
 
 
-    public  NetServer(Game game)
+    public  NetServer(GameServer game)
     {
        this.game = game;
     }
@@ -57,7 +58,7 @@ public class NetServer implements Runnable {
                 {
                     jsonObject = (JSONObject) parser.parse( message.getObject(0));
                     game.getSimpleCube().Parse(jsonObject);
-                    game.getSimpleCube().transformation.position.y = (float) Math.cos(f);
+                    game.getSimpleCube().getTransformation().position.y = (float) Math.cos(f);
                     f += df;
 
                     // сериализация

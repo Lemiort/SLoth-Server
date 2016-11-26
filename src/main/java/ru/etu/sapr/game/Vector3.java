@@ -1,6 +1,7 @@
-package ru.etu.sapr;
+package ru.etu.sapr.game;
 
 import org.json.simple.JSONObject;
+import ru.etu.sapr.net.IJsonParsable;
 
 /**
  * Created by Red on 16.10.2016.

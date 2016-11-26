@@ -1,7 +1,7 @@
-package ru.etu.sapr;
+package ru.etu.sapr.net;
 
-import ru.etu.sapr.INetClient;
-import ru.etu.sapr.IpEndPoint;
+import ru.etu.sapr.net.INetClient;
+import ru.etu.sapr.net.IpEndPoint;
 
 import java.io.IOException;
 import java.net.DatagramPacket;

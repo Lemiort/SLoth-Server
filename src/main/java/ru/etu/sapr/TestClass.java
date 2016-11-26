@@ -2,6 +2,8 @@ package ru.etu.sapr;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import ru.etu.sapr.game.SimpleCube;
+import ru.etu.sapr.net.JsonContainer;
 
 /**
  * Created by Nikita on 20.11.2016.
@@ -54,7 +56,7 @@ public class TestClass {
             //System.out.println("returned2 "+str2);
             jsonObject = (JSONObject) jsonParser.parse(str);
             simpleCube.Parse(jsonObject);
-            simpleCube.transformation.position.y = 0.0f;
+            simpleCube.getTransformation().position.y = 0.0f;
 
             // сериализация
             //message = new JsonContainer();

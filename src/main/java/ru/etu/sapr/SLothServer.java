@@ -1,11 +1,13 @@
-import java.net.*;
-import ru.etu.sapr.*;
+package ru.etu.sapr;
 
-public class UDPServer {
+import ru.etu.sapr.game.GameServer;
+import ru.etu.sapr.net.NetServer;
+
+public class SLothServer {
 
     public static void main(String[] args) throws Exception {
 
-        Game game = new Game();
+        GameServer game = new GameServer();
         NetServer netServer = new NetServer(game);
 
         Thread gameThread = new Thread(game);

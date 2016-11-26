@@ -1,4 +1,4 @@
-package ru.etu.sapr;
+package ru.etu.sapr.net;
 
 import java.io.IOException;
 

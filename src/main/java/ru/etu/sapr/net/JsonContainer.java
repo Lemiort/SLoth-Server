@@ -1,4 +1,4 @@
-package ru.etu.sapr;
+package ru.etu.sapr.net;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -6,7 +6,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.Iterator;
-import java.util.ArrayList;
 
 /**
  * Created by Red on 21.11.2016.

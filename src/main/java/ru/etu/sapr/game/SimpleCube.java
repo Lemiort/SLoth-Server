@@ -1,4 +1,4 @@
-package ru.etu.sapr;
+package ru.etu.sapr.game;
 
 import org.json.simple.JSONObject;
 

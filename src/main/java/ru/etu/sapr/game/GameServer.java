@@ -1,12 +1,12 @@
-package ru.etu.sapr;
+package ru.etu.sapr.game;
 
 /**
  * Created by Red on 20.11.2016.
  */
-public class Game implements Runnable {
+public class GameServer implements Runnable {
     private SimpleCube simpleCube;
 
-    public  Game()
+    public GameServer()
     {
         simpleCube = new SimpleCube();
     }
@@ -25,8 +25,8 @@ public class Game implements Runnable {
         int cycleCounter =0;
         while (true)
         {
-            //System.out.println("Game cycle №"+cycleCounter);
-            simpleCube.transformation.position.y = (float) Math.cos(cycleCounter);
+            //System.out.println("GameServer cycle №"+cycleCounter);
+            simpleCube.getTransformation().position.y = (float) Math.cos(cycleCounter);
             cycleCounter++;
             try {
                 Thread.sleep(33);
