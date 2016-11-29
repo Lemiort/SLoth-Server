@@ -48,7 +48,7 @@ public class TestClass {
         str ="{\"objectType\":\"setPosition\",\"objects\":[\"{\\\"transformation\\\":{\\\"position\\\":{\\\"x\\\":0.0,\\\"y\\\":0.0,\\\"z\\\":0.0}}}\"]}";
         jsonObject = (JSONObject) jsonParser.parse( str);
         message.Parse(jsonObject);
-        if(message.getObjectType().contains("setPosition"))
+        if(message.getObjectTypeStr().contains("setPosition"))
         {
             str = message.getObject(0);
             System.out.println("returned "+str);
@@ -68,7 +68,7 @@ public class TestClass {
         }
         else
         {
-            System.out.println("Type is : " + message.getObjectType());
+            System.out.println("Type is : " + message.getObjectTypeStr());
         }
     }
 }

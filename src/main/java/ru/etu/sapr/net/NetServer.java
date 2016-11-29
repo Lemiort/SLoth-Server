@@ -54,7 +54,7 @@ public class NetServer implements Runnable {
                 Object obj = parser.parse(sentence);
                 JSONObject jsonObject = (JSONObject) obj;
                 message.Parse(jsonObject);
-                if(message.getObjectType().contains("setPosition"))
+                if(message.getObjectTypeStr().contains("setPosition"))
                 {
                     jsonObject = (JSONObject) parser.parse( message.getObject(0));
                     game.getSimpleCube().Parse(jsonObject);
@@ -66,12 +66,13 @@ public class NetServer implements Runnable {
                     message.clear();
 
                     message.addObject(game.getSimpleCube().toJSONObject(),0);
+                    message.setObjectTypeStr("setPosition");
 
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
-                else if(message.getObjectType().contains("currentNum"))
+                else if(message.getObjectTypeStr().contains("getCurrentNum"))
                 {
                     this.game.AddToQueue(message);
 
@@ -79,13 +80,14 @@ public class NetServer implements Runnable {
                     jsonObject.clear();
                     jsonObject.put("number",this.game.GetCurrentTransactionNum());
                     message.addObject(jsonObject,0);
+                    message.setObjectTypeStr("currentNum");
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
                 else
                 {
-                    System.out.println("Type is : " + message.getObjectType());
+                    System.out.println("Unknown type is : " + message.getObjectTypeStr());
                 }
                /* game.getSimpleCube().Parse(jsonObject);
 

@@ -38,14 +38,14 @@ public class GameClient implements Runnable {
     private void MakeSetPositionTransaction(JsonContainer container, SimpleCube simpleCube)
     {
         container.clear();
-        container.setObjectType("setPosition");
+        container.setObjectTypeStr("setPosition");
         container.addObject(simpleCube.toJSONObject(), 0);
     }
 
     private void MakeGetCurrentNumTransaction(JsonContainer container)
     {
         container.clear();
-        container.setObjectType("currentNum");
+        container.setObjectTypeStr("getCurrentNum");
     }
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
@@ -62,7 +62,7 @@ public class GameClient implements Runnable {
 
     private int UnpackCurrentNumTransaction(JsonContainer container) throws ParseException
     {
-        if (container.getObjectType().contains("currentNum")) {
+        if (container.getObjectTypeStr().contains("currentNum")) {
             JSONObject jsonObject = (JSONObject) parser.parse(container.getObject(0));
             return  ((Long) jsonObject.get("number")).intValue();
         }
@@ -113,7 +113,7 @@ public class GameClient implements Runnable {
             Object obj = parser.parse(sentence);
             JSONObject jsonObject = (JSONObject) obj;
             jsonContainer.Parse(jsonObject);
-            if (jsonContainer.getObjectType().contains("setPosition")) {
+            if (jsonContainer.getObjectTypeStr().contains("setPosition")) {
                 jsonObject = (JSONObject) parser.parse(jsonContainer.getObject(0));
                 cube.Parse(jsonObject);
 
@@ -122,7 +122,7 @@ public class GameClient implements Runnable {
 
 
             } else {
-                System.out.println("Type is : " + jsonContainer.getObjectType());
+                System.out.println("Type is : " + jsonContainer.getObjectTypeStr());
             }
         }
         catch (ParseException e){
@@ -179,7 +179,7 @@ public class GameClient implements Runnable {
             Object obj = parser.parse(sentence);
             JSONObject jsonObject = (JSONObject) obj;
             jsonContainer.Parse(jsonObject);*/
-            if (jsonContainer.getObjectType().contains("setPosition")) {
+            if (jsonContainer.getObjectTypeStr().contains("setPosition")) {
                 JSONObject jsonObject = (JSONObject) parser.parse(jsonContainer.getObject(0));
                 cube.Parse(jsonObject);
 
@@ -188,7 +188,7 @@ public class GameClient implements Runnable {
 
 
             } else {
-                System.out.println("Type is : " + jsonContainer.getObjectType());
+                System.out.println("Type is : " + jsonContainer.getObjectTypeStr());
             }
         }
         catch (IOException e){

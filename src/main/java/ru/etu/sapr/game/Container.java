@@ -1,6 +1,5 @@
 package ru.etu.sapr.game;
 
-import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import ru.etu.sapr.net.JsonContainer;
 
@@ -72,7 +71,7 @@ public class Container {
      * @throws ParseException
      */
     public void Parse(JsonContainer obj) throws ParseException {
-        this.setObjectType(obj.getObjectType());
+        this.setObjectType(obj.getObjectTypeStr());
         try {
 
         }
@@ -80,7 +79,7 @@ public class Container {
             //e.printStackTrace();
             System.out.println(e.getMessage());
         }
-        switch (ObjectType.valueOf(this.getObjectType())){
+        switch (ContainerType.valueOf(this.getObjectType())){
             // распаковка
             case getCurrentNum:
                 this.objects.clear();
