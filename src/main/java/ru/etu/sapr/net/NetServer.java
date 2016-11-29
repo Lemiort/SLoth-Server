@@ -71,6 +71,18 @@ public class NetServer implements Runnable {
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
+                else if(message.getObjectType().contains("currentNum"))
+                {
+                    this.game.AddToQueue(message);
+
+                    message.clear();
+                    jsonObject.clear();
+                    jsonObject.put("number",this.game.GetCurrentTransactionNum());
+                    message.addObject(jsonObject,0);
+                    udpClient.Send(message.toJSONObject().toJSONString().getBytes());
+
+                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                }
                 else
                 {
                     System.out.println("Type is : " + message.getObjectType());

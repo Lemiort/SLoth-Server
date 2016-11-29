@@ -1,5 +1,9 @@
 package ru.etu.sapr.game;
 
+import ru.etu.sapr.net.JsonContainer;
+
+import java.util.LinkedList;
+
 /**
  * Created by Red on 20.11.2016.
  */
@@ -19,9 +23,21 @@ public class GameServer implements Runnable {
         simpleCube = cube;
     }
 
+    private LinkedList<JsonContainer> transactions;
+
+    public void AddToQueue(JsonContainer jsonContainer)
+    {
+        transactions.add(jsonContainer);
+    }
+
+    public int GetCurrentTransactionNum()
+    {
+        return transactions.size();
+    }
+
     public void run()
     {
-
+        transactions = new LinkedList<JsonContainer>();
         int cycleCounter =0;
         while (true)
         {

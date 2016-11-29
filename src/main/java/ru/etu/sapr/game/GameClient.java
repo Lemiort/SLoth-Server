@@ -35,8 +35,44 @@ public class GameClient implements Runnable {
 
     private float f;
 
+    private void MakeSetPositionTransaction(JsonContainer container, SimpleCube simpleCube)
+    {
+        container.clear();
+        container.setObjectType("setPosition");
+        container.addObject(simpleCube.toJSONObject(), 0);
+    }
+
+    private void MakeGetCurrentNumTransaction(JsonContainer container)
+    {
+        container.clear();
+        container.setObjectType("currentNum");
+    }
+
+    private void UnpackToContainer(String str, JsonContainer container) throws ParseException
+    {
+        container.clear();
+        //десереиализация
+        Object obj = parser.parse(str);
+        JSONObject jsonObject = (JSONObject) obj;
+        container.Parse(jsonObject);
+
+        System.out.println("Client received: " + jsonObject.toJSONString());
+    }
+
+
+    private int DepackCurrentNumTransaction(JsonContainer container) throws ParseException
+    {
+        if (container.getObjectType().contains("currentNum")) {
+            JSONObject jsonObject = (JSONObject) parser.parse(container.getObject(0));
+            return  ((Long) jsonObject.get("number")).intValue();
+        }
+        else
+            return -1;
+    }
+
     public void run()
     {
+        parser = new JSONParser();
         try {
             this.udpClient = new UdpClient(9877);
         }
@@ -55,8 +91,7 @@ public class GameClient implements Runnable {
         }
 
         this.jsonContainer = new JsonContainer();
-        this.jsonContainer.setObjectType("setPosition");
-        this.jsonContainer.addObject(this.cube.toJSONObject(), 0);
+        MakeSetPositionTransaction(jsonContainer,cube);
 
         /*try {
             this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
@@ -110,47 +145,55 @@ public class GameClient implements Runnable {
 
     private void Update()
     {
-        this.jsonContainer.clear();
 
         this.cube.getTransformation().position.x = f;
         f+= 1.0;
 
-
-        this.jsonContainer.setObjectType("setPosition");
-        this.jsonContainer.addObject(this.cube.toJSONObject(), 0);
-
         try {
+            //current num
+            //sent
+            MakeGetCurrentNumTransaction(jsonContainer);
             this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
             System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+
+            //receive
             this.receiveData = this.udpClient.Receive();
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-            return;
-        }
+            String sentence = new String(receiveData, 0, receiveData.length);
+            //depack
+            UnpackToContainer(sentence, jsonContainer);
+            //decode
+            int num = DepackCurrentNumTransaction(jsonContainer);
+            System.out.println("num ="+num);
 
-        this.jsonContainer.clear();
-
-        // подготовка
-        String sentence = new String(receiveData, 0, receiveData.length);
-
-        //десереиализация
-        try {
+            //set  position
+            MakeSetPositionTransaction(jsonContainer,cube);
+            this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
+            System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+            //receive
+            this.receiveData = this.udpClient.Receive();
+            sentence = new String(receiveData, 0, receiveData.length);
+            //unpack
+            UnpackToContainer(sentence, jsonContainer);
+            /*//десереиализация
             parser = new JSONParser();
             Object obj = parser.parse(sentence);
             JSONObject jsonObject = (JSONObject) obj;
-            jsonContainer.Parse(jsonObject);
+            jsonContainer.Parse(jsonObject);*/
             if (jsonContainer.getObjectType().contains("setPosition")) {
-                jsonObject = (JSONObject) parser.parse(jsonContainer.getObject(0));
+                JSONObject jsonObject = (JSONObject) parser.parse(jsonContainer.getObject(0));
                 cube.Parse(jsonObject);
 
-                System.out.println("Client received: " + jsonObject.toJSONString());
+                //System.out.println("Client received: " + jsonObject.toJSONString());
                 // TODO:
 
 
             } else {
                 System.out.println("Type is : " + jsonContainer.getObjectType());
             }
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+            return;
         }
         catch (ParseException e){
             System.out.println(e.getMessage());
