@@ -60,7 +60,7 @@ public class GameClient implements Runnable {
     }
 
 
-    private int DepackCurrentNumTransaction(JsonContainer container) throws ParseException
+    private int UnpackCurrentNumTransaction(JsonContainer container) throws ParseException
     {
         if (container.getObjectType().contains("currentNum")) {
             JSONObject jsonObject = (JSONObject) parser.parse(container.getObject(0));
@@ -159,10 +159,10 @@ public class GameClient implements Runnable {
             //receive
             this.receiveData = this.udpClient.Receive();
             String sentence = new String(receiveData, 0, receiveData.length);
-            //depack
+            //unpack
             UnpackToContainer(sentence, jsonContainer);
             //decode
-            int num = DepackCurrentNumTransaction(jsonContainer);
+            int num = UnpackCurrentNumTransaction(jsonContainer);
             System.out.println("num ="+num);
 
             //set  position
