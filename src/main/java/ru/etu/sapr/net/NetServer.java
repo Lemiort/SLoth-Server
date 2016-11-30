@@ -3,7 +3,9 @@ package ru.etu.sapr.net;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import ru.etu.sapr.game.ContainerType;
 import ru.etu.sapr.game.GameServer;
+import ru.etu.sapr.game.SimpleCube;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -54,50 +56,34 @@ public class NetServer implements Runnable {
                 Object obj = parser.parse(sentence);
                 JSONObject jsonObject = (JSONObject) obj;
                 message.Parse(jsonObject);
-                if(message.getObjectTypeStr().contains("setPosition"))
+                if(message.getContainerType() == ContainerType.setPosition)
                 {
-                    jsonObject = (JSONObject) parser.parse( message.getObject(0));
-                    game.getSimpleCube().Parse(jsonObject);
+                    game.setSimpleCube((SimpleCube) message.getObject(0));
                     game.getSimpleCube().getTransformation().position.y = (float) Math.cos(f);
                     f += df;
 
                     // сериализация
                     //message = new JsonContainer();
-                    message.clear();
-
-                    message.addObject(game.getSimpleCube().toJSONObject(),0);
-                    message.setObjectTypeStr("setPosition");
+                    message.FormSetPositionContainer(game.getSimpleCube());
 
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
-                else if(message.getObjectTypeStr().contains("getCurrentNum"))
+                else if(message.getContainerType() == ContainerType.getCurrentNum)
                 {
                     this.game.AddToQueue(message);
 
-                    message.clear();
-                    jsonObject.clear();
-                    jsonObject.put("number",this.game.GetCurrentTransactionNum());
-                    message.addObject(jsonObject,0);
-                    message.setObjectTypeStr("currentNum");
+                    message.FormCurrentNumContainer(this.game.GetCurrentTransactionNum());
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
                 else
                 {
-                    System.out.println("Unknown type is : " + message.getObjectTypeStr());
+
+                    System.out.println("Unknown type is : " + message.getContainerType().toString());
                 }
-               /* game.getSimpleCube().Parse(jsonObject);
-
-                game.getSimpleCube().transformation.position.y = (float) Math.cos(f);
-                f += df;
-
-                //сериализация
-                udpClient.Send(game.getSimpleCube().toJSONObject().toJSONString().getBytes());
-
-                System.out.println("SENT: " + game.getSimpleCube().toJSONObject().toJSONString());*/
 
             }
         }

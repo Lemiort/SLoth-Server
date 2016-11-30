@@ -4,8 +4,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import ru.etu.sapr.game.Container;
 import ru.etu.sapr.game.ContainerType;
+import ru.etu.sapr.game.SimpleCube;
 
 
 import java.util.ArrayList;
@@ -27,27 +27,35 @@ public class JsonContainer implements IJsonParsable {
         return containerType;
     }
 
-    public void  setContainerType(ContainerType type) {
+    public Object getObject(int index){
+        return objects.get(index);
+    }
+
+    @Deprecated
+    private void  setContainerType(ContainerType type) {
         this.containerType = type;
     }
 
-    public String getObjectTypeStr(){
+    @Deprecated
+    private String getObjectTypeStr(){
         return objectTypeStr;
     }
 
-    public void setObjectTypeStr(String str){
+    @Deprecated
+    private void setObjectTypeStr(String str){
         objectTypeStr = str;
     }
 
-    public void addObject(JSONObject obj, int index){
+    private void addObject(JSONObject obj, int index){
         jsonArray.add(index, obj.toJSONString());
     }
 
-    public void addObject(JSONObject obj){
+    private void addObject(JSONObject obj){
         jsonArray.add(obj.toJSONString());
     }
 
-    public String getObject(int index) throws ParseException {
+
+    private String getJsonObject(int index) throws ParseException {
         argsIter = jsonArray.iterator();
         for(int i=0; i<index && argsIter.hasNext(); i++) {
         //nothing
@@ -71,8 +79,18 @@ public class JsonContainer implements IJsonParsable {
         argsIter = jsonArray.iterator();
         switch (ContainerType.valueOf(this.objectTypeStr)){
             case setPosition:
+                this.containerType = ContainerType.setPosition;
+                jsonObject = (JSONObject) parser.parse( this.getJsonObject(0));
+                SimpleCube simpleCube = new SimpleCube();
+                simpleCube.Parse(jsonObject);
+                this.objects.add(simpleCube);
                 break;
             case createCube:
+                this.containerType = ContainerType.createCube;
+                jsonObject = (JSONObject) parser.parse( this.getJsonObject(0));
+                simpleCube = new SimpleCube();
+                simpleCube.Parse(jsonObject);
+                this.objects.add(simpleCube);
                 break;
             case getCurrentNum:
                 this.containerType = ContainerType.getCurrentNum;
@@ -87,6 +105,30 @@ public class JsonContainer implements IJsonParsable {
                 this.containerType = ContainerType.unknown;
                 break;
         }
+    }
+
+    public void FormGetCurrentNumContainer()
+    {
+        this.clear();
+        this.containerType = ContainerType.getCurrentNum;
+        this.objectTypeStr = this.containerType.name();
+    }
+
+    public void FormCurrentNumContainer(int num)
+    {
+        this.clear();
+        this.containerType = ContainerType.currentNum;
+        this.objectTypeStr = this.containerType.name();
+        this.jsonObject.put("number",num);
+        this.addObject(jsonObject,0);
+    }
+
+    public void FormSetPositionContainer(SimpleCube simpleCube)
+    {
+        this.clear();
+        this.containerType = ContainerType.setPosition;
+        this.objectTypeStr = this.containerType.name();
+        this.addObject(simpleCube.toJSONObject(), 0);
     }
 
     public void clear(){

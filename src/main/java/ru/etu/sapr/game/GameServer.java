@@ -19,9 +19,10 @@ public class GameServer implements Runnable {
         return  simpleCube;
     }
 
-    protected  void  setSimpleCube(SimpleCube cube){
+    public void setSimpleCube(SimpleCube cube) {
         simpleCube = cube;
     }
+
 
     private LinkedList<JsonContainer> transactions;
 

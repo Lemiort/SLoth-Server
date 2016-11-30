@@ -2,8 +2,11 @@ package ru.etu.sapr;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import ru.etu.sapr.game.ContainerType;
 import ru.etu.sapr.game.SimpleCube;
 import ru.etu.sapr.net.JsonContainer;
+
+import javax.swing.text.SimpleAttributeSet;
 
 /**
  * Created by Nikita on 20.11.2016.
@@ -48,27 +51,16 @@ public class TestClass {
         str ="{\"objectType\":\"setPosition\",\"objects\":[\"{\\\"transformation\\\":{\\\"position\\\":{\\\"x\\\":0.0,\\\"y\\\":0.0,\\\"z\\\":0.0}}}\"]}";
         jsonObject = (JSONObject) jsonParser.parse( str);
         message.Parse(jsonObject);
-        if(message.getObjectTypeStr().contains("setPosition"))
-        {
-            str = message.getObject(0);
-            System.out.println("returned "+str);
-            //String str2 = str.substring(1,str.length()-2);
-            //System.out.println("returned2 "+str2);
-            jsonObject = (JSONObject) jsonParser.parse(str);
-            simpleCube.Parse(jsonObject);
+        if(message.getContainerType() == ContainerType.setPosition){
+            simpleCube = (SimpleCube)message.getObject(0);
             simpleCube.getTransformation().position.y = 0.0f;
 
-            // сериализация
-            //message = new JsonContainer();
-            message.clear();
-
-            message.addObject(simpleCube.toJSONObject(),0);
-
+            message.FormSetPositionContainer(simpleCube);
             System.out.println("SENT: " + message.toJSONObject().toJSONString());
         }
         else
         {
-            System.out.println("Type is : " + message.getObjectTypeStr());
+            System.out.println("Type is : " + message.getContainerType().toString());
         }
     }
 }
