@@ -8,5 +8,6 @@ public enum ContainerType {
     createCube,
     setPosition,
     getCurrentNum,
-    currentNum
+    currentNum,
+    getTransaction
 }

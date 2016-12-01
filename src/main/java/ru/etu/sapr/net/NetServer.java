@@ -56,9 +56,12 @@ public class NetServer implements Runnable {
                 Object obj = parser.parse(sentence);
                 JSONObject jsonObject = (JSONObject) obj;
                 message.Parse(jsonObject);
+
                 if(message.getContainerType() == ContainerType.setPosition)
                 {
-                    game.setSimpleCube((SimpleCube) message.getObject(0));
+                    this.game.AddToQueue(message);
+
+                    /*game.setSimpleCube((SimpleCube) message.getObject(0));
                     game.getSimpleCube().getTransformation().position.y = (float) Math.cos(f);
                     f += df;
 
@@ -68,13 +71,19 @@ public class NetServer implements Runnable {
 
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
-                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                    System.out.println("SENT: " + message.toJSONObject().toJSONString());*/
                 }
                 else if(message.getContainerType() == ContainerType.getCurrentNum)
                 {
-                    this.game.AddToQueue(message);
-
                     message.FormCurrentNumContainer(this.game.GetCurrentTransactionNum());
+                    udpClient.Send(message.toJSONObject().toJSONString().getBytes());
+
+                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                }
+                else if(message.getContainerType() == ContainerType.getTransaction)
+                {
+                    message = this.game.GetTransaction((Integer) message.getObject(0));
+
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
                     System.out.println("SENT: " + message.toJSONObject().toJSONString());

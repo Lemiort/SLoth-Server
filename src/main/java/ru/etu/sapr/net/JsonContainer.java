@@ -96,6 +96,11 @@ public class JsonContainer implements IJsonParsable {
                 this.containerType = ContainerType.getCurrentNum;
                 //нет аргументов вообще
                 break;
+            case getTransaction:
+                this.containerType = ContainerType.getTransaction;
+                jsonObject = (JSONObject) parser.parse(argsIter.next());
+                this.objects.add (0,((Long)(jsonObject).get("number")).intValue());
+                break;
             case currentNum:
                 this.containerType = ContainerType.currentNum;
                 jsonObject = (JSONObject) parser.parse(argsIter.next());
@@ -123,10 +128,27 @@ public class JsonContainer implements IJsonParsable {
         this.addObject(jsonObject,0);
     }
 
+    public void FormGetTransaction(int num)
+    {
+        this.clear();
+        this.containerType = ContainerType.getTransaction;
+        this.objectTypeStr = this.containerType.name();
+        this.jsonObject.put("number",num);
+        this.addObject(jsonObject,0);
+    }
+
     public void FormSetPositionContainer(SimpleCube simpleCube)
     {
         this.clear();
         this.containerType = ContainerType.setPosition;
+        this.objectTypeStr = this.containerType.name();
+        this.addObject(simpleCube.toJSONObject(), 0);
+    }
+
+    public void FormCreateCubeContainer(SimpleCube simpleCube)
+    {
+        this.clear();
+        this.containerType = ContainerType.createCube;
         this.objectTypeStr = this.containerType.name();
         this.addObject(simpleCube.toJSONObject(), 0);
     }

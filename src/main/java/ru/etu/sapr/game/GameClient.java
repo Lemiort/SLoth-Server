@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Dictionary;
 
 /**
  * Created by Nikita on 26.11.2016.
@@ -35,6 +36,9 @@ public class GameClient implements Runnable {
 
     private float f;
 
+    private int prevTransactionCount;
+
+    private Dictionary<int,SimpleCube>
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
     {
@@ -80,42 +84,7 @@ public class GameClient implements Runnable {
 
         this.jsonContainer = new JsonContainer();
 
-        /*try {
-            this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
-            this.receiveData = this.udpClient.Receive();
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-            return;
-        }
-
-        this.jsonContainer.clear();
-
-        // подготовка
-        String sentence = new String(receiveData, 0, receiveData.length);
-
-        //десереиализация
-        try {
-            parser = new JSONParser();
-            Object obj = parser.parse(sentence);
-            JSONObject jsonObject = (JSONObject) obj;
-            jsonContainer.Parse(jsonObject);
-            if (jsonContainer.getObjectTypeStr().contains("setPosition")) {
-                jsonObject = (JSONObject) parser.parse(jsonContainer.getJsonObject(0));
-                cube.Parse(jsonObject);
-
-                System.out.println("Client received: " + jsonObject.toJSONString());
-                // TODO:
-
-
-            } else {
-                System.out.println("Type is : " + jsonContainer.getObjectTypeStr());
-            }
-        }
-        catch (ParseException e){
-            System.out.println(e.getMessage());
-            return;
-        }*/
+        prevTransactionCount = 0;
 
         while (true)
         {
@@ -135,37 +104,60 @@ public class GameClient implements Runnable {
 
         this.cube.getTransformation().position.x = f;
         f+= 1.0;
-
+        int transactionsCount;
         try {
+            String sentence;
             //current num
-            //sent
-            jsonContainer.FormGetCurrentNumContainer();
-            this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
-            System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+            {
+                //sent
+                jsonContainer.FormGetCurrentNumContainer();
+                this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
+                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
 
-            //receive
-            this.receiveData = this.udpClient.Receive();
-            String sentence = new String(receiveData, 0, receiveData.length);
-            //unpack
-            UnpackToContainer(sentence, jsonContainer);
-            //decode
-            int num = (Integer) jsonContainer.getObject(0);
-            System.out.println("num ="+num);
+                //receive
+                this.receiveData = this.udpClient.Receive();
+                sentence = new String(receiveData, 0, receiveData.length);
+                //unpack
+                UnpackToContainer(sentence, jsonContainer);
+                //decode
+                transactionsCount = (Integer) jsonContainer.getObject(0);
+                System.out.println("num =" + transactionsCount);
+            }
+            //update transaction
+            for(int i = prevTransactionCount; i<transactionsCount; i++)
+            {
+                jsonContainer.FormGetTransaction(i);
+
+                this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
+                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+
+                //receive
+                this.receiveData = this.udpClient.Receive();
+                sentence = new String(receiveData, 0, receiveData.length);
+                //unpack
+                UnpackToContainer(sentence, jsonContainer);
+                if(jsonContainer.getContainerType() == ContainerType.setPosition){
+                    cube = (SimpleCube) jsonContainer.getObject(0);
+                }
+            }
+            prevTransactionCount = transactionsCount;
 
             //set  position
-            jsonContainer.FormSetPositionContainer(cube);
-            this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(),this.serverEP);
-            System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+            {
+                jsonContainer.FormSetPositionContainer(cube);
+                this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
+                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
 
-            //receive
-            this.receiveData = this.udpClient.Receive();
-            sentence = new String(receiveData, 0, receiveData.length);
-            //unpack
-            UnpackToContainer(sentence, jsonContainer);
-            if(jsonContainer.getContainerType() == ContainerType.setPosition) {
-                cube = (SimpleCube) jsonContainer.getObject(0);
-            }else {
-                System.out.println("Type is : " + jsonContainer.getContainerType().toString());
+               /* //receive
+                this.receiveData = this.udpClient.Receive();
+                sentence = new String(receiveData, 0, receiveData.length);
+                //unpack
+                UnpackToContainer(sentence, jsonContainer);
+                if (jsonContainer.getContainerType() == ContainerType.setPosition) {
+                    cube = (SimpleCube) jsonContainer.getObject(0);
+                } else {
+                    System.out.println("Type is : " + jsonContainer.getContainerType().toString());
+                }*/
             }
         }
         catch (IOException e){
