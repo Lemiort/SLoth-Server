@@ -55,6 +55,7 @@ public class NetServer implements Runnable {
                 //десереиализация
                 Object obj = parser.parse(sentence);
                 JSONObject jsonObject = (JSONObject) obj;
+                message = new JsonContainer();
                 message.Parse(jsonObject);
 
                 if(message.getContainerType() == ContainerType.setPosition)
@@ -82,6 +83,7 @@ public class NetServer implements Runnable {
                 }
                 else if(message.getContainerType() == ContainerType.getTransaction)
                 {
+                    System.out.println("Trying get transaction: " + message.getObject(0));
                     message = this.game.GetTransaction((Integer) message.getObject(0));
 
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());

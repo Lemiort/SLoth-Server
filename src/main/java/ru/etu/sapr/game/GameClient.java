@@ -93,7 +93,7 @@ public class GameClient implements Runnable {
         {
             this.Update();
             try {
-                Thread.sleep(33);
+                Thread.sleep(60);
             }
             catch (InterruptedException ex)
             {
