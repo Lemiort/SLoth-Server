@@ -19,4 +19,5 @@ public class SimpleCube extends GameObject {
     public void Parse(JSONObject obj) {
         super.Parse(obj);
     }
+
 }

@@ -12,6 +12,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.Dictionary;
+import java.util.HashMap;
 
 /**
  * Created by Nikita on 26.11.2016.
@@ -38,7 +39,7 @@ public class GameClient implements Runnable {
 
     private int prevTransactionCount;
 
-    private Dictionary<int,SimpleCube>
+    private HashMap<Long,SimpleCube> simpleCubeHashMap;
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
     {
@@ -65,6 +66,7 @@ public class GameClient implements Runnable {
     public void run()
     {
         parser = new JSONParser();
+        simpleCubeHashMap = new HashMap<Long, SimpleCube>();
         try {
             this.udpClient = new UdpClient(9877);
         }
@@ -74,6 +76,7 @@ public class GameClient implements Runnable {
         }
 
         this.cube = new SimpleCube();
+        simpleCubeHashMap.put(cube.getInstanceID(), cube);
         try {
             this.serverEP = new IpEndPoint(InetAddress.getByName(serverIP), serverPort);
         }
@@ -137,7 +140,13 @@ public class GameClient implements Runnable {
                 //unpack
                 UnpackToContainer(sentence, jsonContainer);
                 if(jsonContainer.getContainerType() == ContainerType.setPosition){
-                    cube = (SimpleCube) jsonContainer.getObject(0);
+                    SimpleCube temp = (SimpleCube) jsonContainer.getObject(0);
+                    simpleCubeHashMap.put(temp.getInstanceID(),temp);
+
+                    if(simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID() == cube.getInstanceID())
+                    {
+                        cube = temp;
+                    }
                 }
             }
             prevTransactionCount = transactionsCount;

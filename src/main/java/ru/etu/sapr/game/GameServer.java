@@ -4,6 +4,7 @@ import org.json.simple.JSONObject;
 import ru.etu.sapr.net.JsonContainer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -24,6 +25,8 @@ public class GameServer implements Runnable {
     public void setSimpleCube(SimpleCube cube) {
         simpleCube = cube;
     }
+
+    private HashMap<Long,SimpleCube> simpleCubeHashMap;
 
 
     private ArrayList<JsonContainer> transactions;
@@ -47,6 +50,7 @@ public class GameServer implements Runnable {
     {
         transactions = new ArrayList<JsonContainer>();
         queue = new ArrayList<JsonContainer>();
+        simpleCubeHashMap = new HashMap<Long, SimpleCube>();
         int cycleCounter =0;
         while (true)
         {
@@ -72,7 +76,14 @@ public class GameServer implements Runnable {
             switch (tempContainer.getContainerType())
             {
                 case setPosition:
-                    this.simpleCube = (SimpleCube)tempContainer.getObject(0);
+                    SimpleCube temp = (SimpleCube)tempContainer.getObject(0);
+                    simpleCubeHashMap.put(temp.getInstanceID(),temp);
+
+                    /*if(simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID() == cube.getInstanceID())
+                    {
+                        cube = temp;
+                    }
+                    this.simpleCube = (SimpleCube)tempContainer.getObject(0);*/
                     this.transactions.add(tempContainer);
                     System.out.println("Added transaction "+ transactions.size());
                     break;

@@ -37,4 +37,8 @@ public abstract class GameObject implements IJsonParsable {
         jsonObject.put("instanceID", this.instanceID);
         return jsonObject;
     }
+
+    public Long getInstanceID() {
+        return instanceID;
+    }
 }
