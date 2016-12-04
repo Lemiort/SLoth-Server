@@ -41,6 +41,8 @@ public class GameClient implements Runnable {
 
     private HashMap<Long,SimpleCube> simpleCubeHashMap;
 
+    private Long ownCubeId;
+
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
     {
         container.clear();
@@ -76,6 +78,7 @@ public class GameClient implements Runnable {
         }
 
         this.cube = new SimpleCube();
+        ownCubeId = this.cube.getInstanceID();
         simpleCubeHashMap.put(cube.getInstanceID(), cube);
         try {
             this.serverEP = new IpEndPoint(InetAddress.getByName(serverIP), serverPort);
@@ -90,6 +93,7 @@ public class GameClient implements Runnable {
         prevTransactionCount = 0;
 
         while (true)
+        //for(int i=0; i<10;i++)
         {
             this.Update();
             try {
@@ -106,7 +110,7 @@ public class GameClient implements Runnable {
     {
 
         this.cube.getTransformation().position.x = f;
-        f+= 1.0;
+        f+= 0.01;
         int transactionsCount;
         try {
             String sentence;
@@ -153,6 +157,8 @@ public class GameClient implements Runnable {
 
             //set  position
             {
+                cube = simpleCubeHashMap.get(ownCubeId);
+                this.cube.getTransformation().position.x = f;
                 jsonContainer.FormSetPositionContainer(cube);
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
                 System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
