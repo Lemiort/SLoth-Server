@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b550d2-4d26-4189-af48-4280d4232080" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/ICubeData.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/ICubeData.java" />
     </list>
     <ignored path="test_serv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,7 +36,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="431">
@@ -88,14 +83,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GoByCircle.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="GoByCircle.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="426">
-                  <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-                  <folding>
-                    <element signature="method#Move#0;class#GoByCircle#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="85">
+                  <caret line="5" column="23" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="23" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -184,8 +177,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/ICubeData.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" />
       </list>
     </option>
   </component>
@@ -881,12 +874,12 @@
       <workItem from="1480819165021" duration="1418000" />
       <workItem from="1480952376588" duration="13456000" />
       <workItem from="1480970336582" duration="4939000" />
-      <workItem from="1480975536294" duration="1162000" />
+      <workItem from="1480975536294" duration="1754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104408000" />
+    <option name="totallyTimeSpent" value="105000000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1359,16 +1352,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-          <folding>
-            <element signature="method#Move#0;class#GoByCircle#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1384,6 +1367,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>

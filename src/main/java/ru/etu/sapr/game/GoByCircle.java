@@ -41,7 +41,10 @@ public class GoByCircle extends CubeAI {
     public void Move() {
         // инициализация
         Vector3 thisPosition = GetSelfPosition();
-        Vector3 nextPosition = GetSelfPosition();
+        Vector3 nextPosition = new Vector3();
+        nextPosition.x = thisPosition.x;
+        nextPosition.y = thisPosition.y;
+        nextPosition.z = thisPosition.z;
 
         // рассчёт следующей точки
         // проверка на нахождении в нужной плоскости по Y
@@ -67,8 +70,8 @@ public class GoByCircle extends CubeAI {
                     float range = (float)Math.sqrt(a*a + b*b);
 
                     // синус и косинус угла между OX и лучём из центра к точке
-                    float sin = (thisPosition.z - thisPosition.z)/range;
-                    float cos = (thisPosition.x - thisPosition.x)/range;
+                    float sin = (thisPosition.z - centerOfCircle.z)/range;
+                    float cos = (thisPosition.x - centerOfCircle.x)/range;
 
                     float d = Math.min(Math.abs(range - radius), speed);
                     float e = (radius > range)?(1.0f):(-1.0f);
@@ -81,8 +84,8 @@ public class GoByCircle extends CubeAI {
                 // движение по окружности
 
                 // синус и косинус угла между OX и лучём из центра к точке
-                float sin = (thisPosition.z - thisPosition.z)/radius;
-                float cos = (thisPosition.x - thisPosition.x)/radius;
+                float sin = (thisPosition.z - centerOfCircle.z)/radius;
+                float cos = (thisPosition.x - centerOfCircle.x)/radius;
 
                 // синус и косинус угла поворота
                 float dsin = (float)Math.sin(speed/radius);
