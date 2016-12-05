@@ -18,13 +18,13 @@ import java.util.HashMap;
 /**
  * Created by Nikita on 26.11.2016.
  */
-public class GameClient implements Runnable, ICubeData {
+public class GameClient implements Runnable{
 
     private final String serverIP = "127.0.0.1";
     private final int serverPort = 9876;
 
 
-    private SimpleCube cube;
+    private SmartCube cube;
 
     private UdpClient udpClient;
 
@@ -40,7 +40,7 @@ public class GameClient implements Runnable, ICubeData {
 
     private int prevTransactionCount;
 
-    private HashMap<Long,SimpleCube> simpleCubeHashMap;
+    private HashMap<Long,SmartCube> simpleCubeHashMap;
 
     private Long ownCubeId;
 
@@ -54,7 +54,7 @@ public class GameClient implements Runnable, ICubeData {
         JSONObject jsonObject = (JSONObject) obj;
         container.Parse(jsonObject);
 
-        System.out.println("Client received: " + jsonObject.toJSONString());
+        //System.out.println("Client received: " + jsonObject.toJSONString());
     }
 
 
@@ -71,7 +71,8 @@ public class GameClient implements Runnable, ICubeData {
     public void run()
     {
         parser = new JSONParser();
-        simpleCubeHashMap = new HashMap<Long, SimpleCube>();
+        newPosition = new Vector3();
+        simpleCubeHashMap = new HashMap<Long, SmartCube>();
         try {
             this.udpClient = new UdpClient(9877);
         }
@@ -80,7 +81,7 @@ public class GameClient implements Runnable, ICubeData {
             return;
         }
 
-        this.cube = new SimpleCube();
+        this.cube = new SmartCube();
         ownCubeId = this.cube.getInstanceID();
         simpleCubeHashMap.put(cube.getInstanceID(), cube);
         try {
@@ -122,7 +123,7 @@ public class GameClient implements Runnable, ICubeData {
                 //sent
                 jsonContainer.FormGetCurrentNumContainer();
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
 
                 //receive
                 this.receiveData = this.udpClient.Receive();
@@ -131,7 +132,7 @@ public class GameClient implements Runnable, ICubeData {
                 UnpackToContainer(sentence, jsonContainer);
                 //decode
                 transactionsCount = (Integer) jsonContainer.getObject(0);
-                System.out.println("num =" + transactionsCount);
+                //System.out.println("num =" + transactionsCount);
             }
             //update transaction
             for(int i = prevTransactionCount; i<transactionsCount; i++)
@@ -139,7 +140,7 @@ public class GameClient implements Runnable, ICubeData {
                 jsonContainer.FormGetTransaction(i);
 
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
 
                 //receive
                 this.receiveData = this.udpClient.Receive();
@@ -147,7 +148,7 @@ public class GameClient implements Runnable, ICubeData {
                 //unpack
                 UnpackToContainer(sentence, jsonContainer);
                 if(jsonContainer.getContainerType() == ContainerType.setPosition){
-                    SimpleCube temp = (SimpleCube) jsonContainer.getObject(0);
+                    SmartCube temp = new SmartCube((SimpleCube) jsonContainer.getObject(0));
                     simpleCubeHashMap.put(temp.getInstanceID(),temp);
 
                     if(simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID() == cube.getInstanceID())
@@ -160,12 +161,16 @@ public class GameClient implements Runnable, ICubeData {
 
             //set  position
             {
-                //TODO вот сюда совать ИИ
+
                 cube = simpleCubeHashMap.get(ownCubeId);
-                this.cube.getTransformation().position.x = f;
+                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, true,10.0f, new Vector3(),5.5f);
+                goByCircle.Move();
+
+                //this.cube.getTransformation().position.x = f;
+                this.cube.getTransformation().position = newPosition;
                 jsonContainer.FormSetPositionContainer(cube);
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
             }
         }
         catch (IOException e){
@@ -178,40 +183,4 @@ public class GameClient implements Runnable, ICubeData {
         }
     }
 
-
-    /**
-     * Через этот метод куб получает информацию о своём местоположении
-     * @return
-     */
-    public Vector3 GetSelfPosition(){
-        return simpleCubeHashMap.get(ownCubeId).getTransformation().position;
-    }
-
-    /**
-     * Через этот метот куб сообшает позицию в которую он хочет переместиться
-     * @param position позиция куда куб хочет переместиться
-     */
-    public void SetNextSelfPosition(Vector3 position){
-        newPosition = position;
-    }
-
-    //Long GetSelfID();
-
-    /**
-     * Получение позиции другого куба по его ID
-     * @param cubeID
-     * @return
-     */
-    public Vector3 GetCubePosition(Long cubeID){
-        return simpleCubeHashMap.get(cubeID).getTransformation().position;
-    }
-
-    /**
-     * Через этот метод куб узнаёт положение всех кубов
-     * <b>В этом массиве не должны находиться его координаты!!!</b>
-     * @return
-     */
-    /*public ArrayList<Vector3> GetAllCubesPosition(){
-        return  new ArrayList<V>
-    }*/
 }

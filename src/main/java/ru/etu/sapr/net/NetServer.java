@@ -50,7 +50,7 @@ public class NetServer implements Runnable {
             while (true) {
                 receiveData = udpClient.Receive();
                 String sentence = new String(receiveData, 0, receiveData.length);
-                System.out.println("RECEIVED: " + sentence);
+                //System.out.println("RECEIVED: " + sentence);
 
                 //десереиализация
                 Object obj = parser.parse(sentence);
@@ -79,16 +79,16 @@ public class NetServer implements Runnable {
                     message.FormCurrentNumContainer(this.game.GetCurrentTransactionNum());
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
-                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                    //System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
                 else if(message.getContainerType() == ContainerType.getTransaction)
                 {
-                    System.out.println("Trying get transaction: " + message.getObject(0));
+                    //System.out.println("Trying get transaction: " + message.getObject(0));
                     message = this.game.GetTransaction((Integer) message.getObject(0));
 
                     udpClient.Send(message.toJSONObject().toJSONString().getBytes());
 
-                    System.out.println("SENT: " + message.toJSONObject().toJSONString());
+                    //System.out.println("SENT: " + message.toJSONObject().toJSONString());
                 }
                 else
                 {

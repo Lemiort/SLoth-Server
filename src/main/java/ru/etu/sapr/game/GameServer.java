@@ -43,7 +43,7 @@ public class GameServer implements Runnable {
     }
 
     public JsonContainer GetTransaction(int index){
-        System.out.println("Getting obj:" + transactions.get(index).toJSONObject().toJSONString());
+        //System.out.println("Getting obj:" + transactions.get(index).toJSONObject().toJSONString());
         return transactions.get(index);
     }
 
@@ -86,8 +86,8 @@ public class GameServer implements Runnable {
                     }
                     this.simpleCube = (SimpleCube)tempContainer.getObject(0);*/
                     this.transactions.add(tempContainer);
-                    System.out.println("Added transaction "+ transactions.size());
-                    System.out.println("It contains "+ tempContainer.toJSONObject().toJSONString());
+                    //System.out.println("Added transaction "+ transactions.size());
+                    //System.out.println("It contains "+ tempContainer.toJSONObject().toJSONString());
                     break;
                 default:
                     break;
