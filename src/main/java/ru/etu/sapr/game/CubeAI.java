@@ -11,10 +11,12 @@ public abstract class CubeAI {
 
     // интерфейс с помошью которого AI общается с игрой
     private ICubeData cubeData;
+    private IOtherCubeData otherCubeData;
 
-    public CubeAI(Long id, ICubeData cubeData){
+    public CubeAI(Long id, ICubeData cubeData, IOtherCubeData orerCubeData){
         this.id = id;
         this.cubeData = cubeData;
+        this.otherCubeData = orerCubeData;
     }
 
     protected Long getId() {
@@ -34,11 +36,11 @@ public abstract class CubeAI {
     }
 
     protected final Vector3 GetCubePosition(Long cubeID){
-        return this.cubeData.GetCubePosition(cubeID);
+        return this.otherCubeData.GetCubePosition(cubeID);
     }
 
     protected final ArrayList<Vector3> GetAllCubesPosition(){
-        return this.cubeData.GetAllCubesPosition();
+        return this.otherCubeData.GetAllCubesPosition();
     }
 
 

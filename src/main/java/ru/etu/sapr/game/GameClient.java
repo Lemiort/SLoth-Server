@@ -163,7 +163,8 @@ public class GameClient implements Runnable{
             {
 
                 cube = simpleCubeHashMap.get(ownCubeId);
-                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, true,10.0f, new Vector3(),5.5f);
+                // TODO: добавить IOtherCubeData
+                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,10.0f, new Vector3(),5.5f);
                 goByCircle.Move();
 
                 //this.cube.getTransformation().position.x = f;

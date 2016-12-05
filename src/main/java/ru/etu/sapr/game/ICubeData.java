@@ -19,18 +19,4 @@ public interface ICubeData {
     void SetNextSelfPosition(Vector3 position);
 
     //Long GetSelfID();
-
-    /**
-     * Получение позиции другого куба по его ID
-     * @param cubeID
-     * @return
-     */
-    Vector3 GetCubePosition(Long cubeID);
-
-    /**
-     * Через этот метод куб узнаёт положение всех кубов
-     * <b>В этом массиве не должны находиться его координаты!!!</b>
-     * @return
-     */
-    ArrayList<Vector3> GetAllCubesPosition();
 }

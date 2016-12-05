@@ -26,9 +26,9 @@ public class GoByCircle extends CubeAI {
      */
     private float speed;
 
-    public GoByCircle(Long id, ICubeData cubeData, boolean isClockwise, float radius, Vector3 centerOfCircle, float speed)
+    public GoByCircle(Long id, ICubeData cubeData, IOtherCubeData otherCubeData, boolean isClockwise, float radius, Vector3 centerOfCircle, float speed)
     {
-        super(id, cubeData);
+        super(id, cubeData, otherCubeData);
 
         this.isClockwise = isClockwise;
         this.radius = radius;
