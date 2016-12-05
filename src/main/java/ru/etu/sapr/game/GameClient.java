@@ -113,7 +113,7 @@ public class GameClient implements Runnable{
     private void Update()
     {
 
-        this.cube.getTransformation().position.x = f;
+        //this.cube.getTransformation().position.x = f;
         f+= 0.01;
         int transactionsCount;
         try {
@@ -164,14 +164,14 @@ public class GameClient implements Runnable{
 
                 cube = simpleCubeHashMap.get(ownCubeId);
                 // TODO: добавить IOtherCubeData
-                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,10.0f, new Vector3(),5.5f);
+                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,30.0f, new Vector3(),0.5f);
                 goByCircle.Move();
 
                 //this.cube.getTransformation().position.x = f;
                 this.cube.getTransformation().position = newPosition;
                 jsonContainer.FormSetPositionContainer(cube);
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
             }
         }
         catch (IOException e){

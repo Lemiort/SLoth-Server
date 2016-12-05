@@ -57,7 +57,7 @@ public class GoByCircle extends CubeAI {
         }
         else{
             // проверка на нахождение в окружности
-            if( (Math.pow((thisPosition.x - centerOfCircle.x),2) + Math.pow((thisPosition.z - centerOfCircle.z),2) - radius*radius) > EPS ) {
+            if( Math.abs(Math.pow((thisPosition.x - centerOfCircle.x),2) + Math.pow((thisPosition.z - centerOfCircle.z),2) - radius*radius) > EPS ) {
                 // переход в точку, принадлежащую окружности
                 if((thisPosition.x == centerOfCircle.x) && (thisPosition.z == centerOfCircle.z)) {
                     // хз нужен ли этот финт но на всякий
