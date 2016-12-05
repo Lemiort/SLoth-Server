@@ -11,13 +11,14 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 
 /**
  * Created by Nikita on 26.11.2016.
  */
-public class GameClient implements Runnable {
+public class GameClient implements Runnable, ICubeData {
 
     private final String serverIP = "127.0.0.1";
     private final int serverPort = 9876;
@@ -42,6 +43,8 @@ public class GameClient implements Runnable {
     private HashMap<Long,SimpleCube> simpleCubeHashMap;
 
     private Long ownCubeId;
+
+    private Vector3 newPosition;
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
     {
@@ -157,22 +160,12 @@ public class GameClient implements Runnable {
 
             //set  position
             {
+                //TODO вот сюда совать ИИ
                 cube = simpleCubeHashMap.get(ownCubeId);
                 this.cube.getTransformation().position.x = f;
                 jsonContainer.FormSetPositionContainer(cube);
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
                 System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
-
-               /* //receive
-                this.receiveData = this.udpClient.Receive();
-                sentence = new String(receiveData, 0, receiveData.length);
-                //unpack
-                UnpackToContainer(sentence, jsonContainer);
-                if (jsonContainer.getContainerType() == ContainerType.setPosition) {
-                    cube = (SimpleCube) jsonContainer.getObject(0);
-                } else {
-                    System.out.println("Type is : " + jsonContainer.getContainerType().toString());
-                }*/
             }
         }
         catch (IOException e){
@@ -184,4 +177,41 @@ public class GameClient implements Runnable {
             return;
         }
     }
+
+
+    /**
+     * Через этот метод куб получает информацию о своём местоположении
+     * @return
+     */
+    public Vector3 GetSelfPosition(){
+        return simpleCubeHashMap.get(ownCubeId).getTransformation().position;
+    }
+
+    /**
+     * Через этот метот куб сообшает позицию в которую он хочет переместиться
+     * @param position позиция куда куб хочет переместиться
+     */
+    public void SetNextSelfPosition(Vector3 position){
+        newPosition = position;
+    }
+
+    //Long GetSelfID();
+
+    /**
+     * Получение позиции другого куба по его ID
+     * @param cubeID
+     * @return
+     */
+    public Vector3 GetCubePosition(Long cubeID){
+        return simpleCubeHashMap.get(cubeID).getTransformation().position;
+    }
+
+    /**
+     * Через этот метод куб узнаёт положение всех кубов
+     * <b>В этом массиве не должны находиться его координаты!!!</b>
+     * @return
+     */
+    /*public ArrayList<Vector3> GetAllCubesPosition(){
+        return  new ArrayList<V>
+    }*/
 }
