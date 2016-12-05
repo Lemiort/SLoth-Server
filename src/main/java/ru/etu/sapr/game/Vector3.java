@@ -17,6 +17,13 @@ public class Vector3 implements IJsonParsable {
         jsonObject = new JSONObject();
     }
 
+    public Vector3( float x, float y, float z){
+        this();
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
     public void Parse(JSONObject obj) {
         Double x = (Double)obj.get("x");
         Double y = (Double)obj.get("y");

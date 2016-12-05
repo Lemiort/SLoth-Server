@@ -44,7 +44,6 @@ public class GameClient implements Runnable{
 
     private Long ownCubeId;
 
-    private Vector3 newPosition;
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
     {
@@ -71,7 +70,6 @@ public class GameClient implements Runnable{
     public void run()
     {
         parser = new JSONParser();
-        newPosition = new Vector3();
         simpleCubeHashMap = new HashMap<Long, SmartCube>();
         try {
             this.udpClient = new UdpClient(9877);
@@ -164,14 +162,13 @@ public class GameClient implements Runnable{
 
                 cube = simpleCubeHashMap.get(ownCubeId);
                 // TODO: добавить IOtherCubeData
-                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,10.0f, new Vector3(),5.5f);
+                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,5.0f, new Vector3(),1.5f);
                 goByCircle.Move();
+                jsonContainer.FormSetPositionContainer(cube);
 
                 //this.cube.getTransformation().position.x = f;
-                this.cube.getTransformation().position = newPosition;
-                jsonContainer.FormSetPositionContainer(cube);
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
             }
         }
         catch (IOException e){
