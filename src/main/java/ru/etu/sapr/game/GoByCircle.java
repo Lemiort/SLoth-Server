@@ -8,7 +8,7 @@ public class GoByCircle extends CubeAI {
     /**
      * погрешность
      */
-    private final float EPS = 1e-5f;
+    private final float EPS = 1e-2f;
     /**
      *  направление движения
      */
@@ -57,7 +57,7 @@ public class GoByCircle extends CubeAI {
         }
         else{
             // проверка на нахождение в окружности
-            if( Math.abs(Math.pow((thisPosition.x - centerOfCircle.x),2) + Math.pow((thisPosition.z - centerOfCircle.z),2) - radius*radius) > EPS ) {
+            if( (Math.abs(Math.pow((thisPosition.x - centerOfCircle.x),2) + Math.pow((thisPosition.z - centerOfCircle.z),2) - radius*radius) > EPS)  ) {
                 // переход в точку, принадлежащую окружности
                 if((thisPosition.x == centerOfCircle.x) && (thisPosition.z == centerOfCircle.z)) {
                     // хз нужен ли этот финт но на всякий
@@ -65,36 +65,37 @@ public class GoByCircle extends CubeAI {
                 }
                 else {
                     // расстояние между точкой и центром
-                    float a = Math.abs(thisPosition.x - centerOfCircle.x);
-                    float b = Math.abs(thisPosition.z - centerOfCircle.z);
-                    float range = (float)Math.sqrt(a*a + b*b);
+                    float range = VecAlg.Length(VecAlg.Subtraction(thisPosition, centerOfCircle));
 
-                    // синус и косинус угла между OX и лучём из центра к точке
-                    float sin = (thisPosition.z - centerOfCircle.z)/range;
-                    float cos = (thisPosition.x - centerOfCircle.x)/range;
-
-                    float d = Math.min(Math.abs(range - radius), speed);
                     float e = (radius > range)?(1.0f):(-1.0f);
 
-                    nextPosition.x = thisPosition.x + e*d*cos;
-                    nextPosition.z = thisPosition.z + e*d*sin;
+                    float d = Math.min(Math.abs(range - radius), speed);
+
+                    Vector3 v1 = VecAlg.Subtraction(thisPosition, centerOfCircle);
+
+                    Vector3 v2 = VecAlg.Addition(v1, VecAlg.Multiply( VecAlg.Normalize(v1), e*d ));
+
+                    nextPosition = VecAlg.Addition(v2, centerOfCircle);
                 }
             }
             else {
                 // движение по окружности
-
-                // синус и косинус угла между OX и лучём из центра к точке
-                float sin = (thisPosition.z - centerOfCircle.z)/radius;
-                float cos = (thisPosition.x - centerOfCircle.x)/radius;
-
                 // синус и косинус угла поворота
                 float dsin = (float)Math.sin(speed/radius);
                 float dcos = (float)Math.cos(speed/radius);
+                //float e = (isClockwise)?(1.0f):(-1.0f);
 
-                float e = (isClockwise)?(-1.0f):(1.0f);
+                // матрица поворота
+                Matrix3 rotMatrix = new Matrix3();
+                rotMatrix.value[0][0] = dcos;
+                rotMatrix.value[0][2] = dsin;
+                rotMatrix.value[1][1] = 1f;
+                rotMatrix.value[2][0] = -dsin;
+                rotMatrix.value[2][2] = dcos;
 
-                nextPosition.x = centerOfCircle.x + radius*(cos + e*dcos);
-                nextPosition.z = centerOfCircle.z + radius*(sin + e*dsin);
+                Vector3 dV1 = VecAlg.Subtraction(thisPosition, centerOfCircle);
+                Vector3 dV2 = VecAlg.Multiply(rotMatrix, dV1);
+                nextPosition = VecAlg.Addition(dV2, centerOfCircle);
             }
         }
 
