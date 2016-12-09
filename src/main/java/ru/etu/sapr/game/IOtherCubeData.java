@@ -1,6 +1,6 @@
 package ru.etu.sapr.game;
 
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * Created by Nikita on 06.12.2016.
@@ -13,10 +13,11 @@ public interface IOtherCubeData {
      */
     Vector3 GetCubePosition(Long cubeID);
 
+    GameObject GetObjectInformation(Long objectID);
+
     /**
-     * Через этот метод куб узнаёт положение всех кубов
-     * <b>В этом массиве не должны находиться его координаты!!!</b>
+     *
      * @return
      */
-    ArrayList<Vector3> GetAllCubesPosition();
+    Hashtable<Long, GameObject> GetAllObjectInformation();
 }

@@ -47,4 +47,15 @@ public class Vector3 implements IJsonParsable {
     public String toString() {
         return "(" + this.x + ", " + this.y + ", " + this.z + ")";
     }
+
+    @Override
+    public boolean equals(Object otherObj) {
+        if(this == otherObj) return true;
+        if(otherObj == null) return false;
+        if(getClass() != otherObj.getClass()) return false;
+
+        Vector3 other = (Vector3)otherObj;
+
+        return x == other.x && y == other.y && z == other.z;
+    }
 }

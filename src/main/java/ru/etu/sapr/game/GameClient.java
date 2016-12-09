@@ -14,17 +14,19 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  * Created by Nikita on 26.11.2016.
  */
-public class GameClient implements Runnable{
+public class GameClient implements Runnable, IOtherCubeData{
 
     private final String serverIP = "127.0.0.1";
     private final int serverPort = 9876;
 
 
     private SmartCube cube;
+    private SmartCube cube2;
 
     private UdpClient udpClient;
 
@@ -43,6 +45,7 @@ public class GameClient implements Runnable{
     private HashMap<Long,SmartCube> simpleCubeHashMap;
 
     private Long ownCubeId;
+    private Long ownCubeId2;
 
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
@@ -81,7 +84,11 @@ public class GameClient implements Runnable{
 
         this.cube = new SmartCube();
         ownCubeId = this.cube.getInstanceID();
+        this.cube2 = new SmartCube();
+        ownCubeId2 = this.cube2.getInstanceID();
+
         simpleCubeHashMap.put(cube.getInstanceID(), cube);
+        simpleCubeHashMap.put(cube2.getInstanceID(), cube2);
         try {
             this.serverEP = new IpEndPoint(InetAddress.getByName(serverIP), serverPort);
         }
@@ -161,8 +168,7 @@ public class GameClient implements Runnable{
             {
 
                 cube = simpleCubeHashMap.get(ownCubeId);
-                // TODO: добавить IOtherCubeData
-                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, null, true,5.0f, new Vector3(),1.5f);
+                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, this, true,5.0f, new Vector3(),1.5f);
                 goByCircle.Move();
                 jsonContainer.FormSetPositionContainer(cube);
 
@@ -181,4 +187,19 @@ public class GameClient implements Runnable{
         }
     }
 
+    public Vector3 GetCubePosition(Long cubeID) {
+        SmartCube smartCube = this.simpleCubeHashMap.get(cubeID);
+        return new Vector3(
+                smartCube.getTransformation().position.x,
+                smartCube.getTransformation().position.y,
+                smartCube.getTransformation().position.z);
+    }
+
+    public GameObject GetObjectInformation(Long objectID) {
+        return null;
+    }
+
+    public Hashtable<Long, GameObject> GetAllObjectInformation() {
+        return null;
+    }
 }

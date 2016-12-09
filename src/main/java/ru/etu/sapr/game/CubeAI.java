@@ -1,6 +1,7 @@
 package ru.etu.sapr.game;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  * Created by Nikita on 05.12.2016.
@@ -8,15 +9,28 @@ import java.util.ArrayList;
 public abstract class CubeAI {
     // идинтификационный номер куба
     private Long id;
+    /**
+     *  скорость
+     */
+    private float speed;
+
+    protected float getSpeed() {
+        return speed;
+    }
+
+    protected void setSpeed(float speed) {
+        this.speed = speed;
+    }
 
     // интерфейс с помошью которого AI общается с игрой
     private ICubeData cubeData;
     private IOtherCubeData otherCubeData;
 
-    public CubeAI(Long id, ICubeData cubeData, IOtherCubeData orerCubeData){
+    public CubeAI(Long id, ICubeData cubeData, IOtherCubeData orerCubeData, float speed){
         this.id = id;
         this.cubeData = cubeData;
         this.otherCubeData = orerCubeData;
+        this.speed = speed;
     }
 
     protected Long getId() {
@@ -39,8 +53,12 @@ public abstract class CubeAI {
         return this.otherCubeData.GetCubePosition(cubeID);
     }
 
-    protected final ArrayList<Vector3> GetAllCubesPosition(){
-        return this.otherCubeData.GetAllCubesPosition();
+    protected final Hashtable<Long, GameObject> GetAllObjectInformation(){
+        return this.otherCubeData.GetAllObjectInformation();
+    }
+
+    protected final GameObject GetObjectInformation(Long objectID){
+        return this.otherCubeData.GetObjectInformation(objectID);
     }
 
 
@@ -49,4 +67,5 @@ public abstract class CubeAI {
      * Метот заставляет AI расчитать позицию в которую должен переместиться куб
      */
     public abstract void Move();
+
 }

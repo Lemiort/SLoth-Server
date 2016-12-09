@@ -21,30 +21,39 @@ public class GoByCircle extends CubeAI {
      *  центр круга
      */
     private Vector3 centerOfCircle;
-    /**
-     *  скорость (возможно стоит вывести в родительский класс)
-     */
-    private float speed;
 
-    public GoByCircle(Long id, ICubeData cubeData, IOtherCubeData otherCubeData, boolean isClockwise, float radius, Vector3 centerOfCircle, float speed)
-    {
-        super(id, cubeData, otherCubeData);
+    public Vector3 getCenterOfCircle() {
+        return centerOfCircle;
+    }
+    protected void setCenterOfCircle(Vector3 centerOfCircle) {
+        this.centerOfCircle = centerOfCircle;
+    }
+
+    public GoByCircle(Long id, ICubeData cubeData, IOtherCubeData otherCubeData, boolean isClockwise, float radius, Vector3 centerOfCircle, float speed) {
+        super(id, cubeData, otherCubeData, speed);
 
         this.isClockwise = isClockwise;
         this.radius = radius;
         this.centerOfCircle = centerOfCircle;
-        this.speed = speed;
     }
 
 
     @Override
     public void Move() {
+
+        MoveByCircle();
+
+    }
+
+    protected void MoveByCircle(){
+
         // инициализация
         Vector3 thisPosition = GetSelfPosition();
         Vector3 nextPosition = new Vector3();
         nextPosition.x = thisPosition.x;
         nextPosition.y = thisPosition.y;
         nextPosition.z = thisPosition.z;
+        float speed = getSpeed();
 
         // рассчёт следующей точки
         // проверка на нахождении в нужной плоскости по Y
