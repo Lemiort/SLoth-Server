@@ -26,7 +26,6 @@ public class GameClient implements Runnable, IOtherCubeData{
 
 
     private SmartCube cube;
-    private SmartCube cube2;
 
     private UdpClient udpClient;
 
@@ -42,10 +41,10 @@ public class GameClient implements Runnable, IOtherCubeData{
 
     private int prevTransactionCount;
 
-    private HashMap<Long,SmartCube> simpleCubeHashMap;
+    private Hashtable<Long,GameObject> simpleCubeHashMap;
 
     private Long ownCubeId;
-    private Long ownCubeId2;
+    private Long playerCubeId;
 
 
     private void UnpackToContainer(String str, JsonContainer container) throws ParseException
@@ -73,7 +72,7 @@ public class GameClient implements Runnable, IOtherCubeData{
     public void run()
     {
         parser = new JSONParser();
-        simpleCubeHashMap = new HashMap<Long, SmartCube>();
+        simpleCubeHashMap = new Hashtable<Long, GameObject>();
         try {
             this.udpClient = new UdpClient(9877);
         }
@@ -84,11 +83,9 @@ public class GameClient implements Runnable, IOtherCubeData{
 
         this.cube = new SmartCube();
         ownCubeId = this.cube.getInstanceID();
-        this.cube2 = new SmartCube();
-        ownCubeId2 = this.cube2.getInstanceID();
+        playerCubeId = 0L;
 
         simpleCubeHashMap.put(cube.getInstanceID(), cube);
-        simpleCubeHashMap.put(cube2.getInstanceID(), cube2);
         try {
             this.serverEP = new IpEndPoint(InetAddress.getByName(serverIP), serverPort);
         }
@@ -156,6 +153,8 @@ public class GameClient implements Runnable, IOtherCubeData{
                     SmartCube temp = new SmartCube((SimpleCube) jsonContainer.getObject(0));
                     simpleCubeHashMap.put(temp.getInstanceID(),temp);
 
+                    if(simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID() < 0)
+                        playerCubeId = simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID();
                     if(simpleCubeHashMap.get(temp.getInstanceID()).getInstanceID() == cube.getInstanceID())
                     {
                         cube = temp;
@@ -167,14 +166,24 @@ public class GameClient implements Runnable, IOtherCubeData{
             //set  position
             {
 
-                cube = simpleCubeHashMap.get(ownCubeId);
-                GoByCircle goByCircle = new GoByCircle(ownCubeId,cube, this, true,5.0f, new Vector3(),1.5f);
-                goByCircle.Move();
+                cube = (SmartCube) simpleCubeHashMap.get(ownCubeId);
+                if(playerCubeId < 0) {
+                    GoByCircle goByCircle = new GoByCircle(ownCubeId, cube, this, true, 5.0f,
+                            simpleCubeHashMap.get(playerCubeId).getTransformation().position, 1.5f);
+                    goByCircle.Move();
+                }
+                else
+                {
+                    GoByCircle goByCircle = new GoByCircle(ownCubeId, cube, this, true, 5.0f,
+                            simpleCubeHashMap.get(playerCubeId).getTransformation().position, 1.5f);
+                    goByCircle.Move();
+                }
+
                 jsonContainer.FormSetPositionContainer(cube);
 
                 //this.cube.getTransformation().position.x = f;
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
-                System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+                //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
             }
         }
         catch (IOException e){
@@ -188,7 +197,7 @@ public class GameClient implements Runnable, IOtherCubeData{
     }
 
     public Vector3 GetCubePosition(Long cubeID) {
-        SmartCube smartCube = this.simpleCubeHashMap.get(cubeID);
+        GameObject smartCube = this.simpleCubeHashMap.get(cubeID);
         return new Vector3(
                 smartCube.getTransformation().position.x,
                 smartCube.getTransformation().position.y,
@@ -196,10 +205,10 @@ public class GameClient implements Runnable, IOtherCubeData{
     }
 
     public GameObject GetObjectInformation(Long objectID) {
-        return null;
+        return this.simpleCubeHashMap.get(objectID);
     }
 
     public Hashtable<Long, GameObject> GetAllObjectInformation() {
-        return null;
+        return this.simpleCubeHashMap;
     }
 }
