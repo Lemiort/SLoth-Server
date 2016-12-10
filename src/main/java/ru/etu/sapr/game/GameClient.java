@@ -44,6 +44,7 @@ public class GameClient implements Runnable, IOtherCubeData{
     private Hashtable<Long,GameObject> simpleCubeHashMap;
 
     private Long ownCubeId;
+    private Long ownCubeId2;
     private Long playerCubeId;
 
 
@@ -82,6 +83,10 @@ public class GameClient implements Runnable, IOtherCubeData{
         }
 
         this.cube = new SmartCube();
+        ownCubeId2 = this.cube.getInstanceID();
+        simpleCubeHashMap.put(cube.getInstanceID(), cube);
+
+        this.cube = new SmartCube();
         ownCubeId = this.cube.getInstanceID();
         playerCubeId = 0L;
 
@@ -103,7 +108,7 @@ public class GameClient implements Runnable, IOtherCubeData{
         {
             this.Update();
             try {
-                Thread.sleep(60);
+                Thread.sleep(20);
             }
             catch (InterruptedException ex)
             {
@@ -168,22 +173,29 @@ public class GameClient implements Runnable, IOtherCubeData{
 
                 cube = (SmartCube) simpleCubeHashMap.get(ownCubeId);
                 if(playerCubeId < 0) {
-                    GoByCircle goByCircle = new GoByCircle(ownCubeId, cube, this, true, 5.0f,
-                            simpleCubeHashMap.get(playerCubeId).getTransformation().position, 1.5f);
+                    GoByCircle goByCircle = new GoByCircle(ownCubeId, cube, this, true, 8.0f,
+                            simpleCubeHashMap.get(playerCubeId).getTransformation().position, 0.5f);
                     goByCircle.Move();
                 }
                 else
                 {
                     GoByCircle goByCircle = new GoByCircle(ownCubeId, cube, this, true, 5.0f,
-                            simpleCubeHashMap.get(playerCubeId).getTransformation().position, 1.5f);
+                            new Vector3(), 1.5f);
                     goByCircle.Move();
                 }
+                GoByCircle goByCircle = new GoByCircle(ownCubeId2, (SmartCube) simpleCubeHashMap.get(ownCubeId2), this, false, 10.0f,
+                        simpleCubeHashMap.get(ownCubeId).getTransformation().position, 2.25f);
+                goByCircle.Move();
+
 
                 jsonContainer.FormSetPositionContainer(cube);
 
                 //this.cube.getTransformation().position.x = f;
                 this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
                 //System.out.println("Client sent: " + jsonContainer.toJSONObject().toJSONString());
+
+                jsonContainer.FormSetPositionContainer((SimpleCube) simpleCubeHashMap.get(ownCubeId2));
+                this.udpClient.Send(this.jsonContainer.toJSONObject().toJSONString().getBytes(), this.serverEP);
             }
         }
         catch (IOException e){

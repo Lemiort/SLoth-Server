@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b550d2-4d26-4189-af48-4280d4232080" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/AITester2D.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawComponent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DynamicGoByCircle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/Vector3.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/Vector3.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/testCube.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/TestCube.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java" afterPath="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java" />
     </list>
     <ignored path="test_serv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +22,10 @@
     <SUITE FILE_PATH="coverage/test_serv$UDPServer.coverage" NAME="UDPServer Coverage Results" MODIFIED="1476633142021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.company.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/test_serv$Main.coverage" NAME="Main Coverage Results" MODIFIED="1476125873059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/SLoth-Server$UDPServer.coverage" NAME="UDPServer Coverage Results" MODIFIED="1479757654251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/test_serv$Main.coverage" NAME="Main Coverage Results" MODIFIED="1476125873059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -43,7 +35,7 @@
     <favorites_list name="test_serv" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="DrawFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawFrame.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -57,7 +49,7 @@
       <file leaf-file-name="DrawComponent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
+            <state relative-caret-position="1241">
               <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -69,9 +61,34 @@
       <file leaf-file-name="Hashtable.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Hashtable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="17">
               <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameServer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+              <folding>
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameClient.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="185" column="129" selection-start-line="185" selection-start-column="129" selection-end-line="185" selection-end-column="129" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,10 +106,20 @@
       <file leaf-file-name="CubeAI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="697">
               <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
-                <element signature="e#1286#1287#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#306#307#0" expanded="false" />
+                <element signature="e#334#335#0" expanded="false" />
+                <element signature="e#378#379#0" expanded="false" />
+                <element signature="e#412#413#0" expanded="false" />
+                <element signature="e#797#798#0" expanded="false" />
+                <element signature="e#822#823#0" expanded="false" />
+                <element signature="e#984#985#0" expanded="false" />
+                <element signature="e#1038#1039#0" expanded="false" />
+                <element signature="e#1103#1104#0" expanded="false" />
+                <element signature="e#1162#1163#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -101,9 +128,14 @@
       <file leaf-file-name="GoByCircle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
+            <state relative-caret-position="765">
               <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#454#455#0" expanded="false" />
+                <element signature="e#491#492#0" expanded="false" />
+                <element signature="e#554#555#0" expanded="false" />
+                <element signature="e#606#607#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,7 +150,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AITester2D.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AITester2D.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/AITester2D.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -183,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/SimpleCube.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameObject.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/SmartCube.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/net/NetServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOrerCubeData.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/ICubeData.java" />
@@ -195,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/AITester2D.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DrawFrame.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawFrame.java" />
@@ -204,6 +234,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/TestCube.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DynamicGoByCircle.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java" />
       </list>
     </option>
   </component>
@@ -228,7 +260,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1378" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -256,7 +288,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -272,6 +303,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SLoth-Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SLoth-Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SLoth-Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SLoth-Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SLoth-Server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -355,8 +418,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -378,7 +442,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AITester2D">
+  <component name="RunManager" selected="Application.SLothClient">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
@@ -877,9 +941,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.AITester2D" />
-        <item index="1" class="java.lang.String" itemvalue="Application.SLothClient" />
-        <item index="2" class="java.lang.String" itemvalue="Application.SLothServer" />
+        <item index="0" class="java.lang.String" itemvalue="Application.SLothClient" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SLothServer" />
+        <item index="2" class="java.lang.String" itemvalue="Application.AITester2D" />
         <item index="3" class="java.lang.String" itemvalue="Application.TestClass" />
         <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
@@ -926,11 +990,12 @@
       <workItem from="1480981252558" duration="12800000" />
       <workItem from="1481052063672" duration="9277000" />
       <workItem from="1481315377893" duration="10706000" />
+      <workItem from="1481374424977" duration="2880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140908000" />
+    <option name="totallyTimeSpent" value="143788000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -942,8 +1007,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -952,12 +1017,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3344" sideWeight="0.5051395" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28968903" sideWeight="0.4948605" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28805238" sideWeight="0.4948605" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19271624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19213313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1075,10 +1140,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-          <folding>
-            <element signature="e#307#308#0" expanded="false" />
-            <element signature="e#352#353#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1231,17 +1293,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-          <folding>
-            <element signature="e#336#337#0" expanded="false" />
-            <element signature="e#381#382#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/vv.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/Transform.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1290,50 +1341,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/net/DrawFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DrawFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="171" column="27" selection-start-line="171" selection-start-column="27" selection-end-line="171" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/net/DrawFrame.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/DrawFrame.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/TestCube.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#375#376#0" expanded="true" />
-            <element signature="e#420#421#0" expanded="true" />
-            <element signature="e#460#461#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#668#669#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#375#376#0" expanded="false" />
+            <element signature="e#420#421#0" expanded="false" />
+            <element signature="e#460#461#0" expanded="false" />
+            <element signature="e#500#501#0" expanded="false" />
+            <element signature="e#540#541#0" expanded="false" />
+            <element signature="e#571#572#0" expanded="false" />
+            <element signature="e#628#629#0" expanded="false" />
+            <element signature="e#668#669#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1394,22 +1420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Hashtable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/IOtherCubeData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1420,28 +1430,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/CubeAI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="697">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#306#307#0" expanded="false" />
+            <element signature="e#334#335#0" expanded="false" />
+            <element signature="e#378#379#0" expanded="false" />
+            <element signature="e#412#413#0" expanded="false" />
+            <element signature="e#797#798#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#984#985#0" expanded="false" />
+            <element signature="e#1038#1039#0" expanded="false" />
+            <element signature="e#1103#1104#0" expanded="false" />
+            <element signature="e#1162#1163#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GoByCircle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
+        <state relative-caret-position="765">
           <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#454#455#0" expanded="false" />
+            <element signature="e#491#492#0" expanded="false" />
+            <element signature="e#554#555#0" expanded="false" />
+            <element signature="e#606#607#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1458,6 +1473,53 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/util/Hashtable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="362" column="0" selection-start-line="362" selection-start-column="0" selection-end-line="362" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/DrawComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
+          <folding>
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/etu/sapr/game/GameClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="185" column="129" selection-start-line="185" selection-start-column="129" selection-end-line="185" selection-end-column="129" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

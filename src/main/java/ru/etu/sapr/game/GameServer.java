@@ -60,7 +60,7 @@ public class GameServer implements Runnable {
             cycleCounter++;
             try {
                 Update();
-                Thread.sleep(33);
+                Thread.sleep(10);
             }
            catch (InterruptedException ex)
            {
